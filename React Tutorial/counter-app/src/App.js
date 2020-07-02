@@ -1,4 +1,4 @@
-import React, { Component }from "react";
+import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import NavBar from "./components/navbar";
@@ -13,6 +13,15 @@ class App extends Component {
             { id: 4, value: 235 },
         ],
     };
+
+    constructor(props){
+        super(props);
+        console.log('App - Constructor');
+    }
+
+    componentDidMount(){
+        console.log('App - Mounted')
+    }
 
     handleIncrement = (counter) => {
         const counters = [...this.state.counters];
@@ -37,15 +46,25 @@ class App extends Component {
         this.setState({ counters });
     };
     render() {
-      return (
-        <React.Fragment>
-            <NavBar totalCounters={this.state.counters.filter(c=>c.value>0).length}/>
-            <main className="container">
-                <Counters counters={this.state.counters} onReset={this.handleReset} onIncrement={this.handleIncrement} onDelete={this.handleDelete}/>
-            </main>
-        </React.Fragment>
-      );
-    }    
+        console.log("App - Rendered")
+        return (
+            <React.Fragment>
+                <NavBar
+                    totalCounters={
+                        this.state.counters.filter((c) => c.value > 0).length
+                    }
+                />
+                <main className="container">
+                    <Counters
+                        counters={this.state.counters}
+                        onReset={this.handleReset}
+                        onIncrement={this.handleIncrement}
+                        onDelete={this.handleDelete}
+                    />
+                </main>
+            </React.Fragment>
+        );
+    }
 }
 
 export default App;

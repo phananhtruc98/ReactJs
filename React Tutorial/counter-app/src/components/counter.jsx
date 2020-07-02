@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 class Counter extends Component {
+    componentDidUpdate(preProps, preState){
+        console.log(preProps);
+        console.log(preState);
+    }
+
+
+    componentWillUnmount(){
+        console.log('Counter - Unmount')
+    }
+
     render() {
-        console.log("props", this.props);
+        console.log('Counter - Rendered')
         return (
             <div>
                 <span className={this.getBadgeClasses()}>
